@@ -2,7 +2,7 @@ package org.example.enums;
 
 public enum Cast {
 
-    BLUE("BLUE"), RED("RED"), CAPTAINB("CAPTAINB"),CAPTAINR("CAPTAINR");
+    BLUE("BLUE"), RED("RED"), CAPTAINB("CAPTAINB"),CAPTAINR("CAPTAINB");
 
     private String value;
 

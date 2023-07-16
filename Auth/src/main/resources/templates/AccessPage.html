@@ -26,11 +26,10 @@
                         <input type="text" th:field="*{username}" placeholder="username" class="form-control"><br>
                     </div>
                     <div class="row mb-2">
-                        <input type="text" th:field="*{mail}" placeholder="mail" class="form-control"><br>
+                        <input type="text" th:field="*{mail}" placeholder="servername" class="form-control"><br>
                     </div>
                     <div class="row mb-2">
                         <select name="cast" class="form-control">
-                            <option value="" disabled selected>university</option>
                             <option th:each="cast : ${T(org.example.enums.Cast).values()}"
                                     th:value="${cast}" th:text="${cast}"></option>
                         </select>

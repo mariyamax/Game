@@ -20,6 +20,7 @@ public class AccessPageController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private CustomTokenService tokenService;
 
@@ -43,21 +44,22 @@ public class AccessPageController {
 
     @PostMapping("/registration")
     public String registerNewUser(User user, @RequestParam(name = "cast") Cast cast, Model model) {
-        //todo тут должно быть формирофание токена и отправка письма
         model.addAttribute("token", tokenService.getToken(user.getUsername(), cast.getValue(), user.getMail()));
         return "AccessPage";
     }
 
    @PostMapping("/login")
     public RedirectView login(@RequestParam(name = "token", required = true) String token, Model model, RedirectAttributes attributes) {
-        tokenService.decodeToUsername(token);
-        if (!tokenService.validateUser(token)) {
+        //tokenService.decodeToUsername(token);
+        /*if (!tokenService.validateUser(token)) {
             attributes.addAttribute("login", "login");
             attributes.addAttribute("error", "Невеный токен");
             return new RedirectView("/login");
-        }
+        }*/
+       attributes.addAttribute("name",tokenService.decodeToUsername(token));
+       attributes.addAttribute("server",tokenService.decodeToMail(token));
         attributes.addAttribute("token", token);
-        return new RedirectView("/mainPage");
+        return new RedirectView("/game");
     }
 
 }
